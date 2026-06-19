@@ -27,7 +27,13 @@ const distPath = path.join(__dirname, '../frontend/dist');
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(distPath, 'index.html'));
 // });
-
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Trip Quotation Generator Backend is Running 🚀",
+    version: "1.0.0",
+  });
+});
 app.listen(PORT, () => {
   console.log(`[Backend Server] Running on port ${PORT}`);
 });
