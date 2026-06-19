@@ -21,12 +21,12 @@ app.use('/api/quotation', quotationRoutes);
 
 // Server static files in production
 const distPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(distPath));
+// app.use(express.static(distPath));
 
-// Fallback to SPA index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
-});
+// // Fallback to SPA index.html
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(distPath, 'index.html'));
+// });
 
 app.listen(PORT, () => {
   console.log(`[Backend Server] Running on port ${PORT}`);
