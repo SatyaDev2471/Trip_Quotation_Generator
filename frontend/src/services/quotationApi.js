@@ -27,6 +27,10 @@ export const getQuotationHistoryApi = async () => {
   return response.data;
 };
 
+export const deleteQuotationApi = async (id) => {
+  await axios.delete(`${API_BASE}/${id}`);
+};
+
 /**
  * Downloads a generated PDF file from the backend
  */

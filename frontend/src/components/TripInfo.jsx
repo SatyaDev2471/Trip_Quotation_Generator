@@ -45,6 +45,11 @@ export default function TripInfo({ trip, setTrip, errors }) {
     setLocationError('');
   };
 
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
   const fetchSuggestions = async (fieldName, value) => {
     const trimmed = value.trim();
     const key = fieldName === 'pickupLocation' ? 'pickup' : 'drop';
@@ -101,7 +106,6 @@ export default function TripInfo({ trip, setTrip, errors }) {
           setTrip(prev => ({
             ...prev,
             distance: routeData.distanceKm.toString(),
-            duration: prev.duration || routeData.durationMinutes.toString(),
             pickupLocationCoords: routeData.pickup,
             dropLocationCoords: routeData.drop
           }));
@@ -120,6 +124,33 @@ export default function TripInfo({ trip, setTrip, errors }) {
       routeControllerRef.current?.abort();
     };
   }, [trip.pickupLocation, trip.dropLocation]);
+
+  useEffect(() => {
+    if (!trip.tripDate || !trip.returnDate) {
+      return;
+    }
+
+    const startDate = new Date(trip.tripDate);
+    const endDate = new Date(trip.returnDate);
+
+    if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+      return;
+    }
+
+    const diffMs = endDate.getTime() - startDate.getTime();
+    const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+    if (diffDays <= 0) {
+      setLocationError('Return date must be the same or after the start date.');
+      return;
+    }
+
+    setTrip(prev => ({
+      ...prev,
+      duration: diffDays.toString()
+    }));
+    setLocationError('');
+  }, [trip.tripDate, trip.returnDate]);
 
   useEffect(() => {
     return () => {
@@ -263,6 +294,7 @@ export default function TripInfo({ trip, setTrip, errors }) {
               name="tripDate"
               value={trip.tripDate}
               onChange={handleChange}
+              min={getTodayDate()}
               className={`w-full pl-10 pr-4 py-2.5 rounded-xl border bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 transition-all ${
                 errors.tripDate
                   ? 'border-rose-400 focus:ring-rose-100 focus:border-rose-500'
@@ -289,6 +321,7 @@ export default function TripInfo({ trip, setTrip, errors }) {
               name="returnDate"
               value={trip.returnDate}
               onChange={handleChange}
+              min={trip.tripDate || getTodayDate()}
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-100 focus:border-secondary transition-all"
             />
           </div>

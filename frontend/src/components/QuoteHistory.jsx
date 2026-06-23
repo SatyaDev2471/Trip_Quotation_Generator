@@ -1,11 +1,11 @@
 import React from 'react';
-import { FiDownload } from 'react-icons/fi';
+import { FiDownload, FiTrash2 } from 'react-icons/fi';
 import { IoCarOutline } from 'react-icons/io5';
 
 /**
  * QuoteHistory component displaying table of saved quotes with download capability
  */
-export default function QuoteHistory({ history, onDownloadPdf, loading }) {
+export default function QuoteHistory({ history, onDownloadPdf, onDeleteHistory, loading }) {
   if (!history || history.length === 0) {
     return (
       <div className="glass-card rounded-3xl p-10 text-center flex flex-col items-center justify-center border border-slate-200">
@@ -90,14 +90,24 @@ export default function QuoteHistory({ history, onDownloadPdf, loading }) {
                   
                   {/* Action */}
                   <td className="py-4 px-6 text-center">
-                    <button
-                      type="button"
-                      onClick={() => onDownloadPdf(quote.id, `${quote.id}.pdf`)}
-                      className="p-2 bg-emerald-50 text-success rounded-lg hover:bg-success hover:text-white transition-all duration-200 inline-flex items-center justify-center"
-                      title="Download PDF Invoice"
-                    >
-                      <FiDownload className="w-3.5 h-3.5" />
-                    </button>
+                    <div className="inline-flex items-center justify-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => onDownloadPdf(quote.id, `${quote.id}.pdf`)}
+                        className="p-2 bg-emerald-50 text-success rounded-lg hover:bg-success hover:text-white transition-all duration-200 inline-flex items-center justify-center"
+                        title="Download PDF Invoice"
+                      >
+                        <FiDownload className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => onDeleteHistory?.(quote.id)}
+                        className="p-2 bg-rose-50 text-rose-600 rounded-lg hover:bg-rose-500 hover:text-white transition-all duration-200 inline-flex items-center justify-center"
+                        title="Delete quotation history"
+                      >
+                        <FiTrash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               );

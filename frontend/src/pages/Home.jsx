@@ -5,6 +5,7 @@ import {
   saveQuotationApi,
   getQuotationHistoryApi,
   downloadQuotationPdfApi,
+  deleteQuotationApi,
   getWhatsAppShareUrlApi
 } from '../services/quotationApi';
 import CustomerInfo from '../components/CustomerInfo';
@@ -230,6 +231,21 @@ export default function Home() {
     }
   };
 
+  const handleDeleteHistory = async (id) => {
+    if (!id) return;
+    setLoading(true);
+    try {
+      await deleteQuotationApi(id);
+      setHistory((prev) => prev.filter((quote) => quote.id !== id));
+      showToast(`Deleted quotation ${id}`, 'success');
+    } catch (err) {
+      console.error(err);
+      showToast('Failed to delete quotation history.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Action: Share current quotation link via WhatsApp in browser
   const handleShareWhatsApp = async () => {
     if (!isSaved || !savedQuotationId) {
@@ -367,6 +383,7 @@ export default function Home() {
           <QuoteHistory 
             history={history} 
             onDownloadPdf={handleDownloadHistoryPdf}
+            onDeleteHistory={handleDeleteHistory}
             loading={loading}
           />
         </div>
