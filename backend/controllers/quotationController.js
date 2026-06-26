@@ -164,3 +164,23 @@ export const share = async (req, res) => {
     return res.status(500).json({ error: 'Failed to create share link' });
   }
 };
+
+export const remove = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const db = await readDatabase();
+    const existingIndex = db.findIndex((q) => q.id === id);
+
+    if (existingIndex === -1) {
+      return res.status(404).json({ error: 'Quotation not found' });
+    }
+
+    db.splice(existingIndex, 1);
+    await writeDatabase(db);
+
+    return res.status(200).json({ message: `Quotation ${id} deleted successfully.` });
+  } catch (error) {
+    console.error('Error deleting quotation:', error);
+    return res.status(500).json({ error: 'Failed to delete quotation' });
+  }
+};

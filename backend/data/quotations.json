@@ -1,0 +1,45 @@
+[
+  {
+    "id": "QTN-20260626-5115",
+    "customer": {
+      "name": "TIRUMALA SATYA DEV SANGITHA",
+      "mobile": "7702324001",
+      "email": "jnvstsd@gmail.com",
+      "company": "jnv"
+    },
+    "trip": {
+      "pickupLocation": "Hyderabad, TG, India",
+      "dropLocation": "Delhi, India",
+      "tripDate": "2026-06-27",
+      "returnDate": "2026-06-30",
+      "distance": "1568",
+      "duration": "3",
+      "pickupLocationCoords": {
+        "lat": 17.390617,
+        "lng": 78.470769
+      },
+      "dropLocationCoords": {
+        "lat": 28.557163,
+        "lng": 77.163665
+      }
+    },
+    "vehicle": {
+      "id": "innova",
+      "name": "Innova Crysta",
+      "rate": "20"
+    },
+    "cost": {
+      "driverCharge": "500",
+      "tollCharge": "2000",
+      "parkingCharge": "0",
+      "gstPercent": "5"
+    },
+    "calculations": {
+      "baseFare": 31360,
+      "subtotal": 33860,
+      "gstAmount": 1693,
+      "totalPayable": 35553
+    },
+    "createdAt": "2026-06-26T16:53:28.616Z"
+  }
+]
