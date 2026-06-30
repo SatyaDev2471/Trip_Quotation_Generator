@@ -100,7 +100,7 @@ export default function CustomerInfo({ customer, setCustomer, errors }) {
         {/* Company Input */}
         <div>
           <label className="block text-xs font-semibold text-slate-600 mb-1.5 uppercase tracking-wider">
-            Company Name <span className="text-slate-400 text-[10px] font-normal lowercase">(optional)</span>
+            Address <span className="text-slate-400 text-[10px] font-normal lowercase">(optional)</span>
           </label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
@@ -108,10 +108,10 @@ export default function CustomerInfo({ customer, setCustomer, errors }) {
             </div>
             <input
               type="text"
-              name="company"
-              value={customer.company}
+              name="Address"
+              value={customer.Address}
               onChange={handleChange}
-              placeholder="e.g. Acme Travel Services"
+              placeholder="e.g. 123 Main Street"
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 focus:border-primary transition-all"
             />
           </div>
