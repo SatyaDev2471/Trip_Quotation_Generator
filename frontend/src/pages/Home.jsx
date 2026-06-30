@@ -27,7 +27,7 @@ export default function Home() {
     name: '',
     mobile: '',
     email: '',
-    company: ''
+    address: ''
   });
 
   const [trip, setTrip] = useState({

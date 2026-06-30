@@ -23,7 +23,7 @@ export const generateWhatsAppUrl = (quotation, mobile = '') => {
 *Customer Details:*
 • Name: ${quotation.customer.name}
 • Mobile: ${quotation.customer.mobile}
-${quotation.customer.company ? `• Company: ${quotation.customer.company}` : ''}
+${quotation.customer.address ? `• Address: ${quotation.customer.address}` : ''}
 
 *Trip Details:*
 • Route: ${quotation.trip.pickupLocation} ➔ ${quotation.trip.dropLocation}

@@ -60,11 +60,11 @@ export default function QuotePreview({ customer, trip, vehicle, cost, calculatio
                 </p>
               </div>
             )}
-            {customer.company && (
+            {customer.address && (
               <div className="col-span-2 border-t border-slate-100 pt-2">
-                <p className="text-slate-400">Company Name</p>
+                <p className="text-slate-400">Address</p>
                 <p className="font-medium text-slate-700 break-words mt-0.5 flex items-center">
-                  <FiBriefcase className="mr-1 text-slate-400" /> {customer.company}
+                  <FiBriefcase className="mr-1 text-slate-400" /> {customer.address}
                 </p>
               </div>
             )}

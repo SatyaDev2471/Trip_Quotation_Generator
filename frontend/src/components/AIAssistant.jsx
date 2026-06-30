@@ -93,7 +93,7 @@ We prioritize safety, comfort, and punctual service. Please let us know if the a
 Looking forward to touring with you.
 
 Warm regards,
-${customer.company || 'Travel Reservations Team'}`;
+${customer.address || 'Travel Reservations Team'}`;
 
     setGeneratedText(followupText);
   };

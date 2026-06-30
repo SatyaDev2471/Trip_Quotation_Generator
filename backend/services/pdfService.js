@@ -48,7 +48,7 @@ export const generatePdf = (quotation) => {
   doc.text(`Name: ${quotation.customer.name}`, 15, 62);
   doc.text(`Mobile: ${quotation.customer.mobile}`, 15, 68);
   doc.text(`Email: ${quotation.customer.email || 'N/A'}`, 110, 62);
-  doc.text(`Company: ${quotation.customer.company || 'N/A'}`, 110, 68);
+  doc.text(`Address: ${quotation.customer.address || 'N/A'}`, 110, 68);
 
   // Section 2: Trip Details
   doc.setFont('Helvetica', 'bold');
